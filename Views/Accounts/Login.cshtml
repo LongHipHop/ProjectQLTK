@@ -1,0 +1,58 @@
+﻿@model Account
+@{
+    ViewData["Title"] = "Login";
+}
+
+<h2>Đăng nhập</h2>
+
+<form asp-controller="Accounts" asp-action="Login" method="post" class="needs-validation" novalidate>
+    <div class="form-group mb-3">
+        <label for="email" class="form-label">Email</label>
+        <input type="email" class="form-control" id="email" name="email" placeholder="Nhập email của bạn" required />
+        <div class="invalid-feedback">Email không được để trống và phải đúng định dạng.</div>
+    </div>
+    <div class="form-group mb-3">
+        <label for="password" class="form-label">Mật khẩu</label>
+        <input type="password" class="form-control" id="password" name="password" placeholder="Nhập mật khẩu của bạn" required />
+        <div class="invalid-feedback">Mật khẩu không được để trống.</div>
+    </div>
+    <div class="d-grid gap-2 d-md-flex justify-content-md-start" style="margin: 20px 0;">
+        <button type="submit" class="btn btn-success me-md-2">Đăng nhập</button>
+        <a class="btn btn-primary me-md-2" asp-action="LoginWithGoogle" asp-controller="Accounts">Đăng nhập bằng Google</a>
+        <a class="btn btn-secondary" asp-action="ForgotPassword" asp-controller="Accounts">Forgot Password</a>
+    </div>
+</form>
+
+@if (!ViewData.ModelState.IsValid)
+{
+    <div class="alert alert-danger" role="alert">
+        @foreach (var error in ViewData.ModelState.Values.SelectMany(x => x.Errors))
+        {
+            <span>@error.ErrorMessage</span>
+            <br />
+        }
+    </div>
+}
+
+@section Scripts {
+    <script>
+        // Example starter JavaScript for disabling form submissions if there are invalid fields
+        (function () {
+            'use strict'
+            // Fetch all the forms we want to apply custom Bootstrap validation styles to
+            var forms = document.querySelectorAll('.needs-validation')
+            // Loop over them and prevent submission
+            Array.prototype.slice.call(forms)
+                .forEach(function (form) {
+                    form.addEventListener('submit', function (event) {
+                        if (!form.checkValidity()) {
+                            event.preventDefault()
+                            event.stopPropagation()
+                        }
+                        form.classList.add('was-validated')
+                    }, false)
+                })
+        })()
+    </script>
+}
+

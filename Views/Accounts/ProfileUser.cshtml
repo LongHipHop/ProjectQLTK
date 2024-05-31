@@ -1,0 +1,110 @@
+﻿@model QLTK.Models.Account
+@{
+    ViewData["Title"] = "ProfileUser";
+    Layout = null;
+}
+
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>User Profile</title>
+    <link rel="stylesheet" href="https://stackpath.bootstrapcdn.com/bootstrap/4.5.2/css/bootstrap.min.css">
+    <link href="https://fonts.googleapis.com/css2?family=Roboto:wght@300;400;700&display=swap" rel="stylesheet">
+    <link rel="stylesheet" href="styles.css">
+    <style>
+        /* Set basic styles for the body */
+        body {
+            font-family: 'Roboto', sans-serif;
+            background-color: #f9f9f9;
+            color: #333;
+        }
+
+        /* Header styling */
+        .header {
+            padding-bottom: 20px;
+            border-bottom: 2px solid #eee;
+        }
+
+        .profile-pic {
+            width: 150px;
+            height: 150px;
+            margin-bottom: 20px;
+        }
+
+        .name {
+            font-size: 2.5em;
+            margin-bottom: 10px;
+        }
+
+        .title {
+            font-size: 1.2em;
+            color: #777;
+        }
+
+        /* Section styling */
+        section {
+            padding: 20px 0;
+            border-bottom: 1px solid #eee;
+        }
+
+            section:last-child {
+                border-bottom: none;
+            }
+
+        h2 {
+            font-size: 1.5em;
+            margin-bottom: 10px;
+            border-bottom: 2px solid #ddd;
+            display: inline-block;
+            padding-bottom: 5px;
+        }
+
+        p {
+            margin-bottom: 10px;
+        }
+    </style>
+</head>
+<body>
+    <div class="container">
+        <div class="row">
+            <div class="col-md-4">
+                <header class="header text-center">
+                    <h1>PROFILE</h1>
+                    <img src="profile-pic.jpg" alt="Profile Picture" class="profile-pic img-fluid rounded-circle">
+                    <h1 class="name">@Html.DisplayFor(model => model.Fullname)</h1>
+                    <p class="title">Lifestyle Blogger & Enthusiast</p>
+                </header>
+                <div class="btn-profile">
+                    <div>
+                        <a asp-action="EditProfile" asp-route-id="@Model?.Id" class="btn btn-success mr-2">Edit</a>
+                        <a asp-area="" asp-controller="Accounts" asp-action="Logout" class="btn btn-danger">Logout</a>
+                    </div>
+                </div>
+            </div>
+            <div class="col-md-8">
+                <section class="details">
+                    <h2>User Details</h2>
+                    <p><strong>Username:</strong> @Html.DisplayFor(model => model.Username)</p>
+                    <p><strong>Email:</strong> @Html.DisplayFor(model => model.Email)</p>
+                    <p><strong>Phone:</strong> @Html.DisplayFor(model => model.Phone)</p>
+                    <p><strong>Gender:</strong> @Html.DisplayFor(model => model.Gender)</p>
+                    <p><strong>Birthday:</strong> @Html.DisplayFor(model => model.Birtday)</p>
+                    <p><strong>Address:</strong> @Html.DisplayFor(model => model.Address)</p>
+                    <p><strong>User Status:</strong> @Html.DisplayFor(model => model.Userstatus)</p>
+                    <p><strong>Created At:</strong> @Html.DisplayFor(model => model.CreateAt)</p>
+                    <p><strong>Updated At:</strong> @Html.DisplayFor(model => model.UpdateAt)</p>
+                </section>
+                @if (TempData["SuccessMessage"] != null)
+                {
+                    <div class="alert alert-success" role="alert">
+                        @TempData["SuccessMessage"]
+                    </div>
+                }
+            </div>
+        </div>
+    </div>
+</body>
+</html>
+

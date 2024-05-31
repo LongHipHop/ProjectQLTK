@@ -1,0 +1,37 @@
+﻿@model Account
+@{
+    ViewData["Title"] = "VerifyOTPRegister";
+}
+<!DOCTYPE html>
+<html>
+<head>
+    <title>Verify OTP</title>
+    <link href="https://stackpath.bootstrapcdn.com/bootstrap/4.5.2/css/bootstrap.min.css" rel="stylesheet">
+    <style>
+        /* Thêm CSS tùy chỉnh nếu cần */
+    </style>
+</head>
+<body>
+    <div class="container mt-5">
+        <div class="row justify-content-center">
+            <div class="col-md-6">
+                <div class="card">
+                    <div class="card-body">
+                        <h2 class="card-title text-center mb-4">Verify OTP</h2>
+                        <form method="post" asp-action="VerifyOTPRegister" asp-controller="Accounts">
+                            <div class="form-group">
+                                <label asp-for="Otp" for="otp">Enter OTP:</label>
+                                <input type="text" id="otp" asp-for="Otp" name="otp" class="form-control" required>
+                            </div>
+                            <div class="form-group">
+                                <button type="submit" class="btn btn-primary btn-block">Submit</button>
+                            </div>
+                        </form>
+                    </div>
+                </div>
+            </div>
+        </div>
+    </div>
+</body>
+</html>
+
